@@ -7,7 +7,7 @@
 // manufacturer
 #define SCPI_IDN1 "PICO-PI"
 // model
-#define SCPI_IDN2 "LABTOOL"
+#define SCPI_IDN2 "ANALOGTOOL"
 // serial number
 // pico unique id
 // version
