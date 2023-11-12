@@ -30,6 +30,8 @@ pico_sdk_init()
 
 pico_add_subdirectory(pico_scpi_usbtmc_lablib)
 
+pico_add_subdirectory(dab)
+
 add_compile_options(-Wall
         -Wno-format          # int != int32_t as far as the compiler is concerned because gcc has int32_t as long int
         -Wno-unused-function 
