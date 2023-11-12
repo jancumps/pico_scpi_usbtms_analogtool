@@ -30,6 +30,8 @@ pico_sdk_init()
 
 pico_add_subdirectory(pico_scpi_usbtmc_lablib)
 
+pico_add_subdirectory(dab)
+
 add_compile_options(-Wall
         -Wno-format          # int != int32_t as far as the compiler is concerned because gcc has int32_t as long int
         -Wno-unused-function 
@@ -46,9 +48,8 @@ add_executable(${CMAKE_PROJECT_NAME}
         ${CMAKE_CURRENT_SOURCE_DIR}/source/gpio/gpio_utils.c
         ${CMAKE_CURRENT_SOURCE_DIR}/source/adc/adc_utils.c
         ${CMAKE_CURRENT_SOURCE_DIR}/source/i2c/i2c_utils.c
-        ${CMAKE_CURRENT_SOURCE_DIR}/source/adc16/adc16_utils.c
         ${CMAKE_CURRENT_SOURCE_DIR}/source/pwm/pwm_utils.c
-        source/adc16/adc16_utils.c source/adc16/adc16_utils.h)
+)
 
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
         ${CMAKE_CURRENT_LIST_DIR}/source
