@@ -3,11 +3,13 @@
 
 // ADS1115 definitions
 #define ADS_START_ADDR 0x48
+
 // ADS1115 registers (4)
 #define ADS1115_REG_CONVERSION 0x00
 #define ADS1115_REG_CONFIG 0x01
 #define ADS1115_REG_LO_THRESH 0x02
 #define ADS1115_REG_HI_THRESH 0x03
+
 // ADS1115 mux values
 #define ADS1115_CH0 0x04
 #define ADS1115_CH1 0x05
