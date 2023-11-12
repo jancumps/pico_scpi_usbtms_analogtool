@@ -42,13 +42,13 @@ void initDabUtils() {
     }
 
     if (ads_addr) {
-        // set config register to desired values
+/*         // set config register to desired values
         adc_confreg[0] = 0x44; // MUX set to AIN0, and PGA set to +-2.048V and continuous conversion mode
         adc_confreg[1] = 0x43; // rate = 32 SPS
         buf[0] = ADS1115_REG_CONFIG;
         buf[1] = adc_confreg[0];
         buf[2] = adc_confreg[1];
-        i2c_write_blocking(i2c_default, ads_addr, buf, 3, false);
+        i2c_write_blocking(i2c_default, ads_addr, buf, 3, false); */
 
         build_data_rate(DR_128);
         build_gain(AIN1, GAIN_2_048); // +- 2.048V
@@ -111,7 +111,7 @@ void build_data_rate(uint8_t dr) {
         return;
     }
     adc_data_rate = dr;
-    adc_confreg[0] &= ~0xE0; // clear the DR bits
+    adc_confreg[1] &= ~0xE0; // clear the DR bits
     adc_confreg[1] |= (dr<<5); // set the DR bits
 }
 void build_gain(uint8_t chan, uint8_t gain) {
@@ -121,7 +121,7 @@ void build_gain(uint8_t chan, uint8_t gain) {
     adc_range[chan] = adc_range_value[gain];
     adc_gain_bits[chan] = gain;
     adc_confreg[0] &= ~0x0E; // clear the PGA bits
-    adc_confreg[1] |= (gain<<1); // set the PGA bits
+    adc_confreg[0] |= (gain<<1); // set the PGA bits
 }
 
 // selects either the first or second channel on the ADC board
