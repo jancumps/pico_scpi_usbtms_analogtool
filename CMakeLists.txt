@@ -46,9 +46,8 @@ add_executable(${CMAKE_PROJECT_NAME}
         ${CMAKE_CURRENT_SOURCE_DIR}/source/gpio/gpio_utils.c
         ${CMAKE_CURRENT_SOURCE_DIR}/source/adc/adc_utils.c
         ${CMAKE_CURRENT_SOURCE_DIR}/source/i2c/i2c_utils.c
-        ${CMAKE_CURRENT_SOURCE_DIR}/source/adc16/adc16_utils.c
         ${CMAKE_CURRENT_SOURCE_DIR}/source/pwm/pwm_utils.c
-        source/adc16/adc16_utils.c source/adc16/adc16_utils.h)
+)
 
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
         ${CMAKE_CURRENT_LIST_DIR}/source
