@@ -25,6 +25,7 @@ void build_gain(uint8_t chan, uint8_t gain); // sets up the local config for gai
 int adc_set_mux(uint8_t chan, uint8_t do_single_conversion);
 
 int16_t adc_raw_diff_result(); // returns the raw differential result (16-bit signed integer)
+double to_volts(uint8_t chan, int16_t raw); // converts the raw result to volts
 
 
 void initDabUtils() {
@@ -91,6 +92,20 @@ scpi_result_t SCPI_DabInputRawQ(scpi_t * context) {
   return SCPI_RES_OK;
 }
 
+scpi_result_t SCPI_DabInputQ(scpi_t * context) {
+  int32_t numbers[1];
+
+  // retrieve the adc index
+  SCPI_CommandNumbers(context, numbers, 1, 0);
+  if (! ((numbers[0] > -1) && (numbers[0] < dabPinCount()))) {
+    SCPI_ErrorPush(context, SCPI_ERROR_INVALID_SUFFIX);
+    return SCPI_RES_ERR;
+  }
+
+  SCPI_ResultDouble(context, to_volts(numbers[0], getDabPinAt(numbers[0])));
+  return SCPI_RES_OK;
+}
+
 void build_data_rate(uint8_t dr) {
     if (dr > 7) {
         return;
@@ -151,4 +166,11 @@ int16_t adc_raw_diff_result() {
     i2c_read_blocking(i2c_default, ads_addr, buf8_ptr, 2, false);
     meas = buf>>8 | buf<<8; // swap bytes
     return(meas);
+}
+
+double to_volts(uint8_t chan, int16_t raw) {
+    double v;
+    v = (double)raw * (adc_range[chan] / 32768.0); // convert the raw value to volts present at the ADC input
+    v = v / opamp_gain[chan]; // adjust for opamp gain
+    return(v);
 }
