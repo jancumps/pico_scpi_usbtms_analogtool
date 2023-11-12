@@ -55,6 +55,7 @@
 #include "adc_utils.h"
 #include "i2c_utils.h"
 #include "pwm_utils.h"
+#include "dab_utils.h"
 
 const scpi_command_t scpi_commands[] = {
     /* IEEE Mandated Commands (SCPI std V1999.0 4.1.1) */
@@ -72,6 +73,9 @@ const scpi_command_t scpi_commands[] = {
     // instrument specific registers commands
     INSTRUMENT_SPECIFIC_REGISTERS
 
+    // dab commands
+    INSTRUMENT_DAB_INP_COMMANDS
+
     SCPI_CMD_LIST_END
 };
 
@@ -84,6 +88,8 @@ void initInstrument() {
     initAdcPins();
     initPwmUtils();
     initPwmPins();
+    initDabUtils();
+    initDabPins();
 }
 
 /**
