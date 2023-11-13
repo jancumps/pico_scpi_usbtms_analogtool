@@ -1,3 +1,6 @@
 [submodule "pico_scpi_usbtmc_lablib"]
 	path = pico_scpi_usbtmc_lablib
 	url = https://github.com/jancumps/pico_scpi_usbtmc_lablib.git
+[submodule "pico_scpi_mod_dataacquisitionboard"]
+	path = pico_scpi_mod_dataacquisitionboard
+	url = https://github.com/jancumps/pico_scpi_mod_dataacquisitionboard.git
